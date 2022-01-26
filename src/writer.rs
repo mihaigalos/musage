@@ -3,7 +3,8 @@ use clap::ArgMatches;
 use colored::*;
 
 use crate::bar::Bar;
-use crate::stats::Stats;
+use crate::stats::StatsMem;
+use crate::stats::StatsSwap;
 pub struct Writer;
 
 impl Writer {
@@ -16,10 +17,10 @@ impl Writer {
             .replace("B", "")
     }
 
-    pub fn write(stats: Vec<Stats>, _: ArgMatches) {
-        Writer::write_disks(stats);
+    pub fn write((stats_mem, stats_swap): (StatsMem, StatsSwap), _: ArgMatches) {
+        Writer::write_disks(stats_mem, stats_swap);
     }
-    pub fn write_disks(stats: Vec<Stats>) {
+    pub fn write_disks(stats_mem: StatsMem, stats_swap: StatsSwap) {
         println!(
             "{:width$} {:>11} {:>11} {:>11} {:>11} {:>11} {:>11} {:>5}",
             "".yellow().bold(),
@@ -32,12 +33,11 @@ impl Writer {
             "Use%".yellow().bold(),
             width = 3
         );
-        for stat in stats {
-            Writer::write_stat(stat);
-        }
+        Writer::write_stat_memory(stats_mem);
+        Writer::write_stat_swap(stats_swap);
     }
 
-    fn write_stat(stat: Stats) {
+    fn write_stat_memory(stat: StatsMem) {
         println!(
             "{:width$} {:>11} {:>11} {:>11} {:>11} {:>11} {:>11} {:>5.4} {}",
             stat.name.yellow().bold(),
@@ -47,9 +47,24 @@ impl Writer {
             Writer::iec_representation(stat.shared),
             Writer::iec_representation(stat.buff_cache),
             Writer::iec_representation(stat.available),
-            stat.percent_usage.to_string() + "%",
-            Bar::new(stat.percent_usage),
+            stat.percent_usage.to_string(),
+            Bar::new(stat.percent_usage, stat.percent_cache),
             width = 3
+        );
+    }
+    fn write_stat_swap(stat: StatsSwap) {
+        println!(
+            "{:width$} {:>10} {:>11} {:>11} {:>11} {:>11} {:>11} {:>5.4} {}",
+            stat.name.yellow().bold(),
+            Writer::iec_representation(stat.total),
+            Writer::iec_representation(stat.used),
+            Writer::iec_representation(stat.free),
+            "-",
+            "-",
+            "-",
+            stat.percent_usage.to_string(),
+            Bar::new(stat.percent_usage, stat.percent_usage),
+            width = 4
         );
     }
 }
