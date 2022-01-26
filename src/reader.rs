@@ -7,16 +7,17 @@ pub struct Reader;
 
 impl Reader {
     pub fn read(args: &ArgMatches) -> (StatsMem, StatsSwap) {
-        let meminfo = Meminfo::new();
-        match meminfo {
-            Ok(meminfo) => {
+        let meminfoA = Meminfo::new();
+        let meminfoB = Meminfo::new();
+        match meminfoA {
+            Ok(meminfoA) => {
                 return (
-                    StatsMem::new("Mem", meminfo.clone(), args),
-                    StatsSwap::new("Swap", meminfo, args),
+                    StatsMem::new("Mem", meminfoA, args),
+                    StatsSwap::new("Swap", meminfoB.unwrap(), args),
                 );
             }
-            Err(err) => {
-                println!("Error: {}", err);
+            _ => {
+                println!("Unexpected error.");
                 return (StatsMem::new_empty(), StatsSwap::new_empty());
             }
         }
