@@ -1,0 +1,51 @@
+name: manual_test
+
+on:
+  workflow_dispatch: # Run with Run Workflow button in GitHub Action Job.
+    inputs:
+      is_manual_cd:
+        default: true
+        description: Manual trigger
+
+jobs:
+  manual-test:
+    name: Building ${{ matrix.job.target }}
+    runs-on: ${{ matrix.job.os }}
+    strategy:
+      matrix:
+        job:
+          - { os: macos-latest,   target: x86_64-apple-darwin,         use-cross: false }
+
+    steps:
+      - name: Installing Rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          profile: minimal
+          override: true
+
+      - name: Install required dependencies
+        env:
+          RUSTFLAGS: "-C target-feature=-crt-static" 
+        shell: bash
+        run: |
+          if [[ ${{ matrix.job.target }} == arm-unknown-linux-gnueabihf ]]; then
+              sudo apt update
+              sudo apt-get install -y binutils-arm-linux-gnueabihf
+          fi
+          if [[ ${{ matrix.job.target }} == aarch64-unknown-linux-gnu ]]; then
+              sudo apt update
+              sudo apt-get install -y binutils-aarch64-linux-gnu
+          fi
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Cargo build
+        env:
+          MACOSX_DEPLOYMENT_TARGET: 10.7
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          use-cross: ${{ matrix.job.use-cross }}
+          args: --release --target ${{ matrix.job.target }}
