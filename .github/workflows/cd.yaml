@@ -91,8 +91,8 @@ jobs:
         shell: bash
         env:
           TARGET: ${{ matrix.job.target }}
-          PROJECT_NAME: dusage
-          PACKAGE_NAME: dusage
+          PROJECT_NAME: musage
+          PACKAGE_NAME: musage
           OS_NAME: ${{ matrix.job.os }}
         run: ./.github/workflows/pack.sh
 
@@ -101,8 +101,8 @@ jobs:
         uses: softprops/action-gh-release@v1
         with:
           files: |
-            dusage-*-${{ matrix.job.target }}.*
-            dusage*.deb
+            musage-*-${{ matrix.job.target }}.*
+            musage*.deb
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
  
