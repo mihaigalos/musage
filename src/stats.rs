@@ -25,15 +25,17 @@ pub struct StatsSwap {
 impl StatsMem {
     pub fn new(name: &str, meminfo: Meminfo, args: &ArgMatches) -> StatsMem {
         let used = meminfo.mem_total - meminfo.mem_available.unwrap();
+        let buff_cache = meminfo.cached + meminfo.buffers;
         let percent_usage = 100.0 * (used as f64 / meminfo.mem_total as f64);
-        let percent_cache = 81.0;
+        let percent_cache = 100.0 * (buff_cache as f64 / meminfo.mem_total as f64);
+
         let result = StatsMem {
             name: name.to_string(),
             total: meminfo.mem_total,
             used: used,
             free: meminfo.mem_free,
-            shared: 0,
-            buff_cache: 0,
+            shared: meminfo.shmem.unwrap(),
+            buff_cache: buff_cache,
             available: meminfo.mem_available.unwrap(),
             percent_usage: percent_usage,
             percent_cache: percent_cache,
