@@ -8,7 +8,6 @@ pub struct Writer;
 
 impl Writer {
     fn iec_representation(input: u64) -> String {
-        // input.to_string()
         Byte::from_bytes(input as u128)
             .get_appropriate_unit(true)
             .format(1)
