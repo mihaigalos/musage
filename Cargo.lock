@@ -160,7 +160,7 @@ dependencies = [
 
 [[package]]
 name = "musage"
-version = "0.0.1"
+version = "0.0.2"
 dependencies = [
  "byte-unit",
  "clap",
