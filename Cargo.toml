@@ -1,15 +1,16 @@
 [package]
-name = "rusage"
-description = "WIP placeholder. Stay tuned."
-version = "0.0.1"
+name = "musage"
+version = "0.2.1"
 edition = "2021"
+authors = ["Mihai Galos <mihaigalos@gmail.com>"]
+description = "💾 A command line memory usage information tool."
+categories = ["command-line-utilities", "filesystem"]
+keywords = ["memory",  "ram", "ram-usage"]
+repository = "https://github.com/mihaigalos/rusage"
 license = "MIT"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
 byte-unit = "4.0.13"
 clap = "2.33.2"
 colored = "2"
-nix = "0.23.0"
 procfs = "0.12.0"
