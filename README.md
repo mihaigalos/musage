@@ -18,7 +18,7 @@ A better interface for `free`.
 
 You might also like [`dusage`](https://github.com/mihaigalos/dusage).
 
-Both can be i.e. automatically executed upon login via `ssh` do a remote machine by invoking them in the remote's `.bashrc` or `.zshrc`.
+Both can be i.e. automatically executed upon login via `ssh` to a remote machine by invoking them in the remote's `.bashrc` or `.zshrc`.
 
 ### Features
 
