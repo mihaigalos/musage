@@ -14,10 +14,10 @@ pub struct Stats {
 }
 
 impl Stats {
-    pub fn new(name: &str, meminfo: Meminfo, _: &ArgMatches) -> Stats {
+    pub fn new(name: &str, meminfo: Meminfo, args: &ArgMatches) -> Stats {
         let used = meminfo.mem_total - meminfo.mem_available.unwrap();
         let percent_usage = 100.0 * (used as f64 / meminfo.mem_total as f64);
-        Stats {
+        let result = Stats {
             name: name.to_string(),
             total: meminfo.mem_total,
             used: used,
@@ -26,6 +26,10 @@ impl Stats {
             buff_cache: 0,
             available: meminfo.mem_available.unwrap(),
             percent_usage: percent_usage,
+        };
+        if args.is_present("debug") {
+            println!("{:?}", result);
         }
+        result
     }
 }
