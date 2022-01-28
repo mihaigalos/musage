@@ -2,10 +2,11 @@ extern crate clap;
 extern crate colored;
 
 use autoclap::autoclap;
+use clap::{App, Arg};
 
 #[cfg(not(tarpaulin_include))]
 fn main() {
-    let args = autoclap()
+    let args = autoclap!()
         .author(env!("CARGO_PKG_AUTHORS"))
         .about(env!("CARGO_PKG_DESCRIPTION"))
         .try_get_matches()
