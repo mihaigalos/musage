@@ -1,9 +1,6 @@
 # musage
 
-[![CI](https://github.com/mihaigalos/musage/actions/workflows/ci.yaml/badge.svg)](https://github.com/mihaigalos/musage/actions/workflows/ci.yaml)
-[![CD](https://github.com/mihaigalos/musage/actions/workflows/cd.yaml/badge.svg)](https://github.com/mihaigalos/musage/actions/workflows/cd.yaml)
-[![crates.io](https://img.shields.io/crates/d/musage.svg)](https://crates.io/crates/musage)
-[![LoC](https://tokei.rs/b1/github/mihaigalos/musage)](https://github.com/mihaigalos/musage)
+[![CI](https://github.com/mihaigalos/musage/actions/workflows/ci.yaml/badge.svg)](https://github.com/mihaigalos/musage/actions/workflows/ci.yaml) [![CD](https://github.com/mihaigalos/musage/actions/workflows/cd.yaml/badge.svg)](https://github.com/mihaigalos/musage/actions/workflows/cd.yaml) [![crates.io](https://img.shields.io/crates/d/musage.svg)](https://crates.io/crates/musage) [![LoC](https://tokei.rs/b1/github/mihaigalos/musage)](https://github.com/mihaigalos/musage)
 
 A command line memory usage information tool.
 
