@@ -3,7 +3,7 @@ use crate::colorizer::Colorizer;
 pub struct Bar;
 
 impl Bar {
-    pub fn new(percent_usage: f64, percent_cache: f64) -> String {
+    pub fn create(percent_usage: f64, percent_cache: f64) -> String {
         let bar_length = 20;
         let bar_unit = "■";
         let bar_units_usage = Bar::compute_bar_units(percent_usage, bar_length);
@@ -21,7 +21,6 @@ impl Bar {
         if percent.is_nan() {
             percent = 0.0;
         }
-        let parts_used = (percent.round() * total_chars as f64 / 100.0).ceil() as usize;
-        parts_used
+        (percent.round() * total_chars as f64 / 100.0).ceil() as usize
     }
 }

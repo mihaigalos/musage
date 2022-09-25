@@ -32,13 +32,13 @@ impl StatsMem {
         let result = StatsMem {
             name: name.to_string(),
             total: meminfo.mem_total,
-            used: used,
+            used,
             free: meminfo.mem_free,
             shared: meminfo.shmem.unwrap(),
-            buff_cache: buff_cache,
+            buff_cache,
             available: meminfo.mem_available.unwrap(),
-            percent_usage: percent_usage,
-            percent_cache: percent_cache,
+            percent_usage,
+            percent_cache,
         };
         if args.is_present("debug") {
             println!("{:?}", result);
@@ -68,7 +68,7 @@ impl StatsSwap {
             total: meminfo.swap_total,
             used: meminfo.swap_cached,
             free: meminfo.swap_free,
-            percent_usage: percent_usage,
+            percent_usage,
         };
         if args.is_present("debug") {
             println!("{:?}", result);

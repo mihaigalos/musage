@@ -14,9 +14,9 @@ impl Colorizer {
 
     pub fn colorize_cached(input: String, percent_disk: f64) -> ColoredString {
         if percent_disk > 80.0 {
-            format!("{}", input).on_magenta()
+            input.on_magenta()
         } else {
-            format!("{}", input).on_blue()
+            input.on_blue()
         }
     }
 
