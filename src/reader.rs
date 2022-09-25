@@ -10,14 +10,14 @@ impl Reader {
         let meminfo = Meminfo::new();
         match meminfo {
             Ok(meminfo) => {
-                return (
+                (
                     StatsMem::new("Mem", meminfo.clone(), args),
                     StatsSwap::new("Swap", meminfo, args),
-                );
+                )
             }
             Err(err) => {
                 println!("Error: {}", err);
-                return (StatsMem::new_empty(), StatsSwap::new_empty());
+                (StatsMem::new_empty(), StatsSwap::new_empty())
             }
         }
     }

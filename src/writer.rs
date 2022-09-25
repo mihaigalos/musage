@@ -12,9 +12,9 @@ impl Writer {
         Byte::from_bytes(input as u128)
             .get_appropriate_unit(true)
             .format(1)
-            .replace(" ", "")
-            .replace("i", "")
-            .replace("B", "")
+            .replace(' ', "")
+            .replace('i', "")
+            .replace('B', "")
     }
 
     pub fn write((stats_mem, stats_swap): (StatsMem, StatsSwap), _: ArgMatches) {
@@ -47,8 +47,8 @@ impl Writer {
             Writer::iec_representation(stat.shared),
             Writer::iec_representation(stat.buff_cache),
             Writer::iec_representation(stat.available),
-            stat.percent_usage.to_string(),
-            Bar::new(stat.percent_usage, stat.percent_cache),
+            stat.percent_usage,
+            Bar::create(stat.percent_usage, stat.percent_cache),
             width = 3
         );
     }
@@ -62,8 +62,8 @@ impl Writer {
             "-",
             "-",
             "-",
-            stat.percent_usage.to_string(),
-            Bar::new(stat.percent_usage, stat.percent_usage),
+            stat.percent_usage,
+            Bar::create(stat.percent_usage, stat.percent_usage),
             width = 4
         );
     }
