@@ -9,6 +9,6 @@ use std::env;
 #[cfg(not(tarpaulin_include))]
 fn main() {
     let app: clap::Command = autoclap!();
-    let args = app.try_get_matches().unwrap_or_else(|e| e.exit());
+    let args = app.clone().try_get_matches().unwrap_or_else(|e| e.exit());
     musage::driver::Driver::drive(args);
 }

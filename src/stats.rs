@@ -40,7 +40,7 @@ impl StatsMem {
             percent_usage,
             percent_cache,
         };
-        if args.is_present("debug") {
+        if args.contains_id("debug") {
             println!("{:?}", result);
         }
         result
@@ -70,7 +70,7 @@ impl StatsSwap {
             free: meminfo.swap_free,
             percent_usage,
         };
-        if args.is_present("debug") {
+        if args.contains_id("debug") {
             println!("{:?}", result);
         }
         result
