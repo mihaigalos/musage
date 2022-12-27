@@ -12,9 +12,7 @@ impl Writer {
         Byte::from_bytes(input as u128)
             .get_appropriate_unit(true)
             .format(1)
-            .replace(' ', "")
-            .replace('i', "")
-            .replace('B', "")
+            .replace([' ', 'i', 'B'], "")
     }
 
     pub fn write((stats_mem, stats_swap): (StatsMem, StatsSwap), _: ArgMatches) {
@@ -39,7 +37,7 @@ impl Writer {
 
     fn write_stat_memory(stat: StatsMem) {
         println!(
-            "{:width$} {:>11} {:>11} {:>11} {:>11} {:>11} {:>11} {:>5.4} {}",
+            "{:width$} {:>11} {:>11} {:>11} {:>11} {:>11} {:>11} {:>5.2} {}",
             stat.name.yellow().bold(),
             Writer::iec_representation(stat.total),
             Writer::iec_representation(stat.used),
@@ -54,7 +52,7 @@ impl Writer {
     }
     fn write_stat_swap(stat: StatsSwap) {
         println!(
-            "{:width$} {:>10} {:>11} {:>11} {:>11} {:>11} {:>11} {:>5.4} {}",
+            "{:width$} {:>10} {:>11} {:>11} {:>11} {:>11} {:>11} {:>5.2} {}",
             stat.name.yellow().bold(),
             Writer::iec_representation(stat.total),
             Writer::iec_representation(stat.used),
