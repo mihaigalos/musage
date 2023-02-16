@@ -14,7 +14,7 @@ impl Reader {
                 StatsSwap::new("Swap", meminfo, args),
             ),
             Err(err) => {
-                println!("Error: {}", err);
+                println!("Error: {err}");
                 (StatsMem::new_empty(), StatsSwap::new_empty())
             }
         }

@@ -41,7 +41,7 @@ impl StatsMem {
             percent_cache,
         };
         if args.get_flag("debug") {
-            println!("{:?}", result);
+            println!("{result:?}");
         }
         result
     }
@@ -71,7 +71,7 @@ impl StatsSwap {
             percent_usage,
         };
         if args.get_flag("debug") {
-            println!("{:?}", result);
+            println!("{result:?}");
         }
         result
     }
