@@ -2,7 +2,7 @@
 name = "musage"
 version = "0.1.3"
 edition = "2021"
-authors = ["Mihai Galos <mihaigalos@gmail.com>"]
+authors = ["Mihai Galos <mihai@galos.one>"]
 description = "🧵 A command line memory usage information tool."
 categories = ["command-line-utilities", "filesystem"]
 keywords = ["memory",  "ram", "ram-usage"]
