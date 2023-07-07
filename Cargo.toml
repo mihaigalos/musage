@@ -1,6 +1,6 @@
 [package]
 name = "musage"
-version = "0.1.3"
+version = "0.1.4"
 edition = "2021"
 authors = ["Mihai Galos <mihai@galos.one>"]
 description = "🧵 A command line memory usage information tool."
