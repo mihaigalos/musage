@@ -14,7 +14,7 @@ on:
 
 jobs:
   cd:
-    uses: mihaigalos/workflows/.github/workflows/rust-cd-crates-io-only.yaml@main
+    uses: mihaigalos/workflows/.github/workflows/rust-cd-crates-io-and-github.yaml@main
     secrets:
       CARGO_API_KEY: ${{ secrets.CARGO_API_KEY }}
 
