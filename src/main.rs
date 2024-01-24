@@ -13,12 +13,21 @@ fn main() {
             .long("version")
             .short('v')
             .action(ArgAction::SetTrue)
-            .help("Display version information."),
+            .help("Display version information.")
+            .required(false),
+    )
+    .arg(
+        Arg::new("debug")
+            .long("debug")
+            .short('D')
+            .action(ArgAction::SetTrue)
+            .help("Print raw data used internally.")
+            .required(false),
     );
     let args = app.clone().try_get_matches().unwrap_or_else(|e| e.exit());
 
     if args.get_flag("version") {
-        println!("{}", app.get_name())
+        println!("{}", app.get_about().unwrap());
     } else {
         musage::driver::Driver::drive(args);
     }
