@@ -1,13 +1,15 @@
 use crate::stats::StatsMem;
 use crate::stats::StatsSwap;
 use clap::ArgMatches;
+
+use procfs::Current;
 use procfs::Meminfo;
 
 pub struct Reader;
 
 impl Reader {
     pub fn read(args: &ArgMatches) -> (StatsMem, StatsSwap) {
-        let meminfo = Meminfo::new();
+        let meminfo = Meminfo::current();
         match meminfo {
             Ok(meminfo) => (
                 StatsMem::new("Mem", meminfo.clone(), args),
@@ -20,4 +22,3 @@ impl Reader {
         }
     }
 }
-
