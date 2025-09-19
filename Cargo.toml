@@ -15,3 +15,6 @@ byte-unit = "4.0.19"
 clap = { version = "4.5.4", features = ["cargo", "string"] }
 colored = "2.1.0"
 procfs = "0.18.0"
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(tarpaulin_include)'] }
