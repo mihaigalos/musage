@@ -39,7 +39,7 @@ jobs:
           fi
 
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
 
       - name: Cargo build
         env:
